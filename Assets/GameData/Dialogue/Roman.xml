@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE dialogue[<!ATTLIST node id ID #IMPLIED>]>
+<dialogue>
+    <intro>
+        <text>This stark, authoritative man reminds you of a drill sergeant.</text>
+        <next_node id="4" />
+    </intro>
+    <topic id="your_story">
+        <title>Your Story</title>
+        <next_node id="1" />
+    </topic>
+    <node id="1">
+        <response>
+            <text>I'm Roman, leader of the Cossacks. I spent most of my life stationed in East Berlin as a Komandarm. I have no other family except the boys under my command. Many of them followed me here in Tunguska. I feel like they are my sons, you know, and I owe to them a good life. </text>
+        </response>
+        <option>
+            <title>Good Life</title>
+            <text>How will you bring them a good life?</text>
+            <next_node id="2" />
+        </option>
+    </node>
+    <node id="2">
+        <response>
+            <text>Well, it doesn't look like much right now, but I assure you many of my soldiers you see around here have a good amount of savings. If one day anyone decide to return to civilized world, I'll give him a big pension as well.</text>
+        </response>
+        <option>
+            <title>Pension</title>
+            <text>Where are you getting all these money from?</text>
+            <next_node id="3" />
+        </option>
+    </node>
+    <node id="3">
+        <response>
+            <text>We are mutant hunters. Good ones too. We know how to slaughter a ghoul for the best parts, and the high quality serums we make brings us a big fortune.</text>
+        </response>
+    </node>
+    <node id="4">
+        <response>
+            <text>Hello, stranger.</text>
+        </response>
+        <option>
+            <condition name="has_sid_letter" story="has_sid_letter" compare="1" op="1" />
+            <title>Dr. Sidorovich</title>
+            <text>Dr. Sidorovich from Zernaskaya sent me here. I'm looking for my brother, Boris. Dr Sidorovich also asked me to bring you this letter.</text>
+            <next_node id="5" />
+        </option>
+    </node>
+    <node id="5">
+        <response>
+            <text>I see. Let me take a look at the letter.</text>
+            <event name="s11_give_roman_letter" />
+        </response>
+        <option>
+            <title>Boris</title>
+            <text>Dr. Sidorovich said he sent my brother recently to work among your hunters.</text>
+            <next_node id="6" />
+        </option>
+    </node>
+    <node id="6">
+        <response>
+            <text>Yes, Boris. He's been here for a month. He's doing well, I assure you, and just a few days ago I sent him out with a hunting expedition group to Lake Cheko.</text>
+        </response>
+        <option>
+            <title>Lake Cheko</title>
+            <text>Where in Lake Cheko will I find him?</text>
+            <next_node id="7" />
+        </option>
+    </node>
+    <node id="7">
+        <response>
+            <text>No idea. They could be anywhere in the region or even ventured out elsewhere. I suggest you stay here for a few days and wait for them to return. If you are bored, Solomon may have a few jobs for you. </text>
+        </response>
+    </node>
+</dialogue>

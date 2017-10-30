@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE dialogue[<!ATTLIST node id ID #IMPLIED>]>
+<dialogue>
+    <intro>
+        <text>This bald, middle-aged man looks at you with the warmest smile you've ever seen.</text>
+        <next_node id="1" />
+    </intro>
+    <topic id="your_story">
+        <title>Story</title>
+        <next_node id="9" />
+    </topic>
+    <node id="9">
+        <response>
+            <text>I'm a business man. As such, I hate adventures. Now, adventure and risk are totally different things. I take risks, which is why I'm here in this God forsaken place. My son, on the other hand, is completely the opposite.</text>
+        </response>
+        <option>
+            <title>Your Son</title>
+            <text>Where is your son?</text>
+            <next_node id="10" />
+        </option>
+    </node>
+    <node id="10">
+        <response>
+            <text>He lives in Kiev. He wanted to come here with me, but I didn't let him. He's a man of hot-headed adventures and he'll get himself killed here. </text>
+        </response>
+    </node>
+    <topic id="zsk_farm_clear">
+        <title>Farm</title>
+        <next_node id="12" />
+    </topic>
+    <node id="12">
+        <response>
+            <text>Did you get our brewery back?</text>
+        </response>
+        <option>
+            <logic type="And">
+                <condition name="zsk_barn_cleared" story="zsk_barn_cleared" compare="1" op="0" />
+                <condition name="zsk_barn_water_on" story="zsk_barn_water_on" compare="0" op="0" />
+            </logic>
+            <title>Farm</title>
+            <text>I cleared the farm for you.</text>
+            <next_node id="11" />
+        </option>
+        <option>
+            <logic type="And">
+                <condition name="zsk_barn_cleared" story="zsk_barn_cleared" compare="1" op="0" />
+                <condition name="zsk_barn_water_on" story="zsk_barn_water_on" compare="1" op="0" />
+            </logic>
+            <title>Farm</title>
+            <text>The farm is clear, and I turned on the irrigators too.</text>
+            <next_node id="11" />
+        </option>
+    </node>
+    <node id="11">
+        <response>
+            <condition name="zsk_barn_water_on" story="zsk_barn_water_on" compare="0" op="0" />
+            <text>Great! I'll send our boys to take over the farm. Are you ready for the next task?</text>
+            <event name="zsk_barn_quest_done1" />
+        </response>
+        <response>
+            <condition name="zsk_barn_water_on" story="zsk_barn_water_on" compare="1" op="0" />
+            <text>Well done! You save us a lot of work. I'll send our boys to take over the farm. Here, they would want you to have this. Now, are you ready for the next task?</text>
+            <event name="zsk_barn_quest_done2" />
+        </response>
+        <option>
+            <title>Yes</title>
+            <text>I'm ready.</text>
+            <next_node id="13" />
+        </option>
+        <option>
+            <title>No</title>
+            <text>I need some time.</text>
+            <next_node id="5" />
+        </option>
+    </node>
+    <node id="13">
+        <response>
+            <text>Now that we got our brewery back, we need to deliver goods to our customers. No, that's not your job - you don't know the way around and our customers don't trust you.</text>
+        </response>
+        <option>
+            <title>OK</title>
+            <text>OK.</text>
+            <next_node id="14" />
+        </option>
+    </node>
+    <node id="14">
+        <response>
+            <text>For the past several months, the Legionnaires held the train station, so the only way out of Zernaskaya is through the sewers under the church. Since we haven't been there for a while, the whole area got overrun with ghouls. </text>
+        </response>
+        <option>
+            <title>Ghouls</title>
+            <text>What are these Ghouls?</text>
+            <next_node id="15" />
+        </option>
+    </node>
+    <node id="15">
+        <response>
+            <text>They are humans at the first stage of mutation after contracting the Tungus Complex. They aren't too dangerous individually, but if many of them gang up on you in a tight space, it's certain death. I need you to clear the Ghouls so we can use the underground sewer to transport goods out. By the way, talk to Hans before you leave. He lives in that L-shaped house. I heard he needed some help. </text>
+            <event name="zsk_sid_church_begin" />
+        </response>
+    </node>
+    <node id="5">
+        <response>
+            <text>Alright, take your time.</text>
+        </response>
+    </node>
+    <topic id="zsk_ivan_igor">
+        <title>Ivan And Igor</title>
+        <next_node id="16" />
+    </topic>
+    <node id="16">
+        <response>
+            <text>Yes, they are my transporters. Three weeks ago I sent them on a delivery but didn't hear from them since. </text>
+        </response>
+        <option>
+            <condition name="zsk_read_ivan_note" story="zsk_read_ivan_note" compare="1" op="0" />
+            <title>Death</title>
+            <text>I found their dead bodies. They were killed by ghouls.</text>
+            <next_node id="17" />
+        </option>
+    </node>
+    <node id="17">
+        <response>
+            <text>Oh! What a shame. At least they didn't run away with my money, right? Were they carrying anything?</text>
+        </response>
+        <option>
+            <title>Yes</title>
+            <text>Yes, I found 190 rubles. Ivan asked to return them to you and send their savings to his mother.</text>
+            <next_node id="18" />
+        </option>
+        <option>
+            <title>No</title>
+            <text>No, didn't find anything on them.</text>
+            <next_node id="19" />
+        </option>
+    </node>
+    <node id="18">
+        <response>
+            <condition name="zsk_has_ivan_money" story="zsk_has_ivan_money" compare="190" op="1" />
+            <text>Hmm... Well seems like they are loyal boys after all. I'll send their savings out. And thank you for bringing the money back.</text>
+            <event name="zsk_lose_ivan_money" />
+        </response>
+        <response>
+            <condition name="zsk_has_ivan_money" story="zsk_has_ivan_money" compare="190" op="-2" />
+            <text>You don't have the money. I'll just take whatever you have and use their savings to cover the rest.</text>
+            <event name="zsk_lose_ivan_money" />
+        </response>
+    </node>
+    <node id="19">
+        <response>
+            <text>Them bastards! I knew I couldn't trust them! Guess I'll just keep their savings to cover my loss.</text>
+            <event name="zsk_forget_ivan" />
+        </response>
+    </node>
+    <topic id="zsk_church_clear">
+        <title>Sewer</title>
+        <next_node id="20" />
+    </topic>
+    <node id="20">
+        <response>
+            <text>Is the task completed?</text>
+        </response>
+        <option>
+            <logic type="And">
+                <condition name="zsk_church_cleared" story="zsk_church_cleared" compare="1" op="0" />
+                <condition name="zsk_sewer_cleared" story="zsk_sewer_cleared" compare="1" op="0" />
+            </logic>
+            <title>Yes</title>
+            <text>Both church grounds and the sewer are cleared.</text>
+            <next_node id="21" />
+        </option>
+    </node>
+    <node id="21">
+        <response>
+            <text>Impressive! You are really getting the hang of it. I just have one more task for you and then I'll introduce you to a Ghoul hunter, and you'll get rich in no time! Are you ready?</text>
+            <event name="zsk_sid_church_quest_done" />
+        </response>
+        <option>
+            <title>No</title>
+            <text>I have other business to take care of.</text>
+            <next_node id="22" />
+        </option>
+        <option>
+            <title>Yes</title>
+            <text>Sure, I'm ready.</text>
+            <next_node id="23" />
+        </option>
+    </node>
+    <node id="22">
+        <response>
+            <text>Suit yourself.</text>
+        </response>
+    </node>
+    <node id="23">
+        <response>
+            <text>Alright. You'll be facing some anomalies this time, so listen carefully. Go up north and then turn east at the fork. You'll find a path leading to the old gas station. The path is littered with anomalies, so throw some rocks with each step so you don't get ripped into pieces. </text>
+        </response>
+        <option>
+            <title>Anomalies</title>
+            <text>What exactly are these anomalies?</text>
+            <next_node id="24" />
+        </option>
+    </node>
+    <node id="24">
+        <response>
+            <text>Consider them as traps laid by the Zone. Each time there's a Visitation the anomalies are rearranged, so there's no way to map their locations. But if you are careful with your steps you can avoid them. When you get to the gas station, look for the "Mad Mechanic" anomaly.</text>
+        </response>
+        <option>
+            <title>Mad Mechanic</title>
+            <text>What's a Mad Mechanic?</text>
+            <next_node id="25" />
+        </option>
+    </node>
+    <node id="25">
+        <response>
+            <text>Well, I haven't seen it myself, but I heard it can repair your weapon automatically - if you do it right. I don't know how it works exactly so I need you to investigate. Here, take some worn pistols and experiment with them. And this old AK too - I need you to bring it back to me in perfect conditions. You can't fool me, though. A gun with perfect conditions is very hard to come by in the Zone. Good luck.</text>
+            <event name="zsk_sid_gas_station_begin" />
+        </response>
+    </node>
+    <topic id="zsk_mad_mechanic">
+        <title>Mad Mechanic</title>
+        <next_node id="26" />
+    </topic>
+    <node id="26">
+        <response>
+            <text>You break it, you bought it.</text>
+        </response>
+        <option>
+            <condition name="zsk_has_sid_ak" story="zsk_has_sid_ak" compare="100" op="0" />
+            <title>AK47</title>
+            <text>I fixed the AK, it's good as new.</text>
+            <next_node id="27" />
+        </option>
+    </node>
+    <node id="27">
+        <response>
+            <condition name="zsk_has_sid_ak" story="zsk_has_sid_ak" compare="100" op="0" />
+            <text>Let me take a look. Ha! No gun smiths in the Zone could do a better job than this. You know what this is? Business, opportunity, money! Well, as a man of his words, I will point you to the right direction to find Boris. </text>
+            <event name="zsk_sid_gas_station_done" />
+        </response>
+        <option>
+            <title>Right direction</title>
+            <text>What have you got for me?</text>
+            <next_node id="28" />
+        </option>
+    </node>
+    <node id="28">
+        <response>
+            <text>Roman Dotsenko, hardened ghoul hunter, leader of the Cossacks. He's one of my best business partners. He was always looking for good recruits to join his band of hunters. So I sent Boris to him. Boris was a good lad, he's probably very rich by now! Here, bring this letter to Roman and he will help you. </text>
+            <event name="zsk_sid_letter_given" />
+        </response>
+        <option>
+            <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="6" op="0" />
+            <title>Roman</title>
+            <text>Where can I find Mr. Dotsenko?</text>
+            <next_node id="29" />
+        </option>
+    </node>
+    <node id="29">
+        <response>
+            <text>Roman has a base of operation near Station 11. To get there, follow the road to the east until you reach Zernaskaya train station. Then follow the south-bound railroad. I have marked it on your map. Go find him and bring him the letter.</text>
+        </response>
+        <option>
+            <title>Train Station</title>
+            <text>Please go on.</text>
+            <next_node id="30" />
+        </option>
+    </node>
+    <node id="30">
+        <response>
+            <text>The train station was taken by the Legionnaires. These are not your everyday bandits you encountered at the potato farm. They are much better equipped so you may want to sneak through the station at night, instead of going in guns blazing. Your pea shooter stands no chance against them. By the way, if you want to make a good load of cash, I have a job for you.</text>
+        </response>
+        <option>
+            <title>Job</title>
+            <text>What do you have in mind?</text>
+            <next_node id="31" />
+        </option>
+    </node>
+    <node id="31">
+        <response>
+            <text>I heard rumor that the Legionnaires just got some supplies from airdrop. Canned food and ammo usually. I could use some of that, my boys are pretty tired of eating potatoes every day. See if you can find a supply parcel from the train station, and I'll pay you good money for it. </text>
+        </response>
+    </node>
+    <topic id="artyom">
+        <title>Artyom</title>
+        <response>
+            <text>The fellow from Moscow? I don't know why he's even here. He had a lucrative job back home, a civil engineer, designed half of the Moscow's metro system by himself, I heard. Why bother coming to this God forsake place? Well, now he learned his lesson, but too late!</text>
+        </response>
+    </topic>
+    <topic id="priest">
+        <title>The Priest</title>
+        <next_node id="33" />
+    </topic>
+    <node id="33">
+        <response>
+            <text>A traitor. That's what he is. We had an agreement - I gave him free shelter and alcohol, he gave me serums. But you know what he did? Sold the alcohol I gave him at a lower price than mine! All I got in return was some horseshit serum and bad business. If you see him, knock his brains out for me.</text>
+        </response>
+        <option>
+            <title>Serum</title>
+            <text>What's this "serum" you are talking about?</text>
+            <next_node id="34" />
+        </option>
+    </node>
+    <node id="34">
+        <response>
+            <text>It's what everyone here in the Zone wants! Some kind of super-medicine, sold for thousands of rubles each shot! Go talk to Hans, he might know something about it.</text>
+            <event name="zsk_sid_talked_serum" />
+        </response>
+    </node>
+    <topic id="zsk_locker">
+        <title>Locker</title>
+        <next_node id="35" />
+    </topic>
+    <node id="35">
+        <response>
+            <text>What about them?</text>
+        </response>
+        <option>
+            <condition name="zsk_locker_key_given" story="zsk_locker_key_given" compare="0" op="0" />
+            <title>Need Locker</title>
+            <text>May I have a locker to store my stuff?</text>
+            <next_node id="36" />
+        </option>
+        <option>
+            <logic type="And">
+                <condition name="zsk_has_sid_locker_key" story="zsk_has_sid_locker_key" compare="0" op="0" />
+                <condition name="zsk_locker_key_given" story="zsk_locker_key_given" compare="1" op="0" />
+            </logic>
+            <title>Replace Key</title>
+            <text>I have lost the locker key. Can you replace it for me?</text>
+            <next_node id="37" />
+        </option>
+    </node>
+    <node id="36">
+        <response>
+            <text>Sure. Here's the key to one of the lockers on your left. If you lose the key, just come to me and I'll replace it for you. Enjoy! </text>
+            <event name="zsk_sid_give_locker_key" />
+        </response>
+    </node>
+    <node id="37">
+        <response>
+            <text>Sure. It'll cost 500 rubles.</text>
+        </response>
+        <option>
+            <title>Alright</title>
+            <text>Alright, let's do it.</text>
+            <next_node id="39" />
+        </option>
+        <option>
+            <title>Nevermind</title>
+            <text>Nevermind. I'll think about it.</text>
+            <next_node id="38" />
+        </option>
+    </node>
+    <node id="39">
+        <response>
+            <condition name="has_money" story="has_money" compare="500" op="1" />
+            <text>Done. Here you go. It'll be 500 rubles.</text>
+            <event name="zsk_sid_replace_locker_key" />
+        </response>
+        <response>
+            <condition name="has_money" story="has_money" compare="500" op="-2" />
+            <text>No. Replacing locker key costs 500 rubles and you don't have that on you.</text>
+        </response>
+    </node>
+    <node id="38">
+        <response>
+            <text>Suit yourself.</text>
+        </response>
+    </node>
+    <node id="1">
+        <response>
+            <text>Hey there, what can I do you for?</text>
+        </response>
+        <option>
+            <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="2" op="0" />
+            <title>Next Job</title>
+            <text>What's my next job?</text>
+            <next_node id="13" />
+        </option>
+        <option>
+            <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="4" op="0" />
+            <title>Next Job</title>
+            <text>What's my next job?</text>
+            <next_node id="23" />
+        </option>
+        <option>
+            <condition name="zsk_has_supply_bag" story="zsk_has_supply_bag" compare="1" op="0" />
+            <title>Supply</title>
+            <text>I found the bag of supplies from Zernaskaya train station.</text>
+            <next_node id="32" />
+        </option>
+        <option>
+            <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="6" op="0" />
+            <title>Roman</title>
+            <text>Where can I find Mr. Dotsenko?</text>
+            <next_node id="29" />
+        </option>
+        <option>
+            <title>Treatment</title>
+            <text>Can you help me? I'm not feeling well.</text>
+            <next_node id="40" />
+        </option>
+        <option>
+            <logic type="And">
+                <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="1" op="-2" />
+                <condition name="zsk_talked_to_razor" story="zsk_talked_to_razor" compare="1" op="0" />
+            </logic>
+            <title>Boris</title>
+            <text>Do you remember my brother Boris?</text>
+            <next_node id="2" />
+        </option>
+        <option>
+            <title>Locked Gate</title>
+            <text>Could you open the gate for me?</text>
+            <next_node id="44" />
+        </option>
+    </node>
+    <node id="32">
+        <response>
+            <text>Excellent! As promised, here's some cash for your work.</text>
+            <event name="zsk_give_sid_supply" />
+        </response>
+    </node>
+    <node id="40">
+        <response>
+            <text>Well of course! I'm a doctor! I can patch up your holes and get rid of your radiation. It will be 250 rubles.</text>
+        </response>
+        <option>
+            <condition name="has_money" story="has_money" compare="250" op="-2" />
+            <title>No Money</title>
+            <text>Nevermind, I don't have enough money.</text>
+            <next_node id="43" />
+        </option>
+        <option>
+            <condition name="has_money" story="has_money" compare="250" op="1" />
+            <title>Yes</title>
+            <text>Sure, here's the money.</text>
+            <next_node id="41" />
+        </option>
+        <option>
+            <condition name="has_money" story="has_money" compare="250" op="1" />
+            <title>No</title>
+            <text>Sorry, I changed my mind.</text>
+            <next_node id="42" />
+        </option>
+    </node>
+    <node id="43">
+        <response>
+            <text>Come back when you do! It's your body, don't let it wait!</text>
+        </response>
+    </node>
+    <node id="41">
+        <response>
+            <text>Good. Now lower your breeches and I'll make you feel a lot better.</text>
+            <event name="zsk_sid_heal" />
+        </response>
+    </node>
+    <node id="42">
+        <response>
+            <text>Break a leg! Hahaha I'm sorry.</text>
+        </response>
+    </node>
+    <node id="2">
+        <response>
+            <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="1" op="0" />
+            <text>Finish the jobs I gave you and then we can talk about him. The gate is unlocked for you. Good luck!</text>
+        </response>
+        <response>
+            <logic type="And">
+                <condition name="zsk_village_gate_open" story="zsk_village_gate_open" compare="0" op="0" />
+                <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="0" op="0" />
+            </logic>
+            <text>Well yes, I do remember Boris. He worked for me for a few weeks. I remember him because he was an exceptional worker. If you are looking for him, I can help you. But I need some help too. So maybe we can make a deal.</text>
+        </response>
+        <option>
+            <logic type="And">
+                <condition name="zsk_village_gate_open" story="zsk_village_gate_open" compare="0" op="0" />
+                <condition name="zsk_sid_quest" story="zsk_sid_quest" compare="0" op="0" />
+            </logic>
+            <title>Help</title>
+            <text>What can I do to help?</text>
+            <next_node id="3" />
+        </option>
+    </node>
+    <node id="3">
+        <response>
+            <text>I like you already! I've got three jobs that needs to be done, and nobody around here has the balls to do any of them. I can't send Razor because he's the chief of my guards; and let's just be clear - these jobs can get you killed, and I can't afford to lose Razor. But if you get these jobs done for me, I'll tell you where to find Boris. What do you think?</text>
+        </response>
+        <option>
+            <title>Yes</title>
+            <text>Alright, let's hear it.</text>
+            <next_node id="4" />
+        </option>
+        <option>
+            <title>Not yet</title>
+            <text>I'll think about it.</text>
+            <next_node id="5" />
+        </option>
+    </node>
+    <node id="4">
+        <response>
+            <text>Good! Here's the first job: right outside the village, up north, there is a barn which we have been using to grow potatoes. We hate eating potatoes but we use them to produce alcohol.</text>
+        </response>
+        <option>
+            <title>Continue</title>
+            <text>Go on.</text>
+            <next_node id="6" />
+        </option>
+    </node>
+    <node id="6">
+        <response>
+            <text>You see, the alcohol is our main trade - the eggheads among the mutant hunters pay a lot of dough for it, and that's how we've been surviving. But recently a bunch of assholes who call themselves "Legionaires" raided our farm and took it for themselves, along with all the distillers. And that puts us in some deep shit. </text>
+        </response>
+        <option>
+            <title>Continue</title>
+            <text>I see. So you need me to take it back for you, right?</text>
+            <next_node id="7" />
+        </option>
+    </node>
+    <node id="7">
+        <response>
+            <text>Exactly. Get rid of the Legionaires; and if you can, fix the irrigation for us, and I'll give you a bonus. The farm is directly north from the village, on the other side of the hill. I'll go head and tell Razor to let you through the gate. Now grab your gun and get to it!</text>
+            <event name="zsk_village_exit_unlock" />
+        </response>
+        <option>
+            <title>Guns</title>
+            <text>I'm not well armed. Can you spare me a gun?</text>
+            <next_node id="8" />
+        </option>
+    </node>
+    <node id="8">
+        <response>
+            <text>No, sorry, can't spare guns to outsiders unless you pay. If you need a weapon, there's an old machete lying around somewhere in the house.</text>
+        </response>
+    </node>
+    <node id="44">
+        <response>
+            <text>I'd be happy to do so. Have you got two thousand rubles?</text>
+        </response>
+    </node>
+</dialogue>

@@ -17,3 +17,11 @@ ehthumbs.db
 Thumbs.db
 $RECYCLE.BIN/
 Desktop.ini
+
+*.psd
+*.wav
+*.tga
+*.png
+*.jpg
+*.fbx
+*.unitypackage
